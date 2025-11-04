@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2023, 8, 12),
+    'start_date': datetime(2024, 8, 12),
     'retries': 1,
     'retry_delay': timedelta(minutes=5),
 }
@@ -20,7 +20,7 @@ transform_task = GlueJobOperator(
     job_name='glue_transform_task',
     script_location='s3://aws-glue-assets-262136919150-us-east-1/scripts/transform.py',
     s3_bucket='s3://aws-glue-assets-262136919150-us-east-1',  # S3 bucket where logs and local etl script will be uploaded
-    aws_conn_id='AWS_CONN',  # You'll need to set up an AWS connection in Airflow
+    aws_conn_id='AWS_CONN',  # Set up an AWS connection in Airflow
     region_name="us-east-1",
     iam_role_name='dataproject-RedshiftIamRole-1PIMCBQ8B05RY',
     create_job_kwargs ={"GlueVersion": "4.0", "NumberOfWorkers": 4, "WorkerType": "G.1X", "Connections":{"Connections":["redshift-demo-connection"]},},
