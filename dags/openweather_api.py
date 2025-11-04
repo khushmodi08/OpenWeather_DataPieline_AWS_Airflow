@@ -1,6 +1,5 @@
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
-from airflow.sensors.http_sensor import HttpSensor
 from airflow.models import Variable
 from datetime import datetime, timedelta
 import json
@@ -11,7 +10,7 @@ import requests
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'start_date': datetime(2023, 8, 12),
+    'start_date': datetime(2024, 8, 12),
     'retries': 2,
     'retry_delay': timedelta(minutes=5),
 }
@@ -22,7 +21,7 @@ dag = DAG('openweather_api_dag', default_args=default_args, schedule_interval="@
 #api_endpoint = "https://api.openweathermap.org/data/2.5/weather"
 api_endpoint = "https://api.openweathermap.org/data/2.5/forecast"
 api_params = {
-        "q": "Toronto,Canada",
+        "q": "New York,USA",
         "appid": Variable.get("key")
     }
 
