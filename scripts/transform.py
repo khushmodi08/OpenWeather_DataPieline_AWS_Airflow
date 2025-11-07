@@ -47,7 +47,7 @@ changeschema_weather_dyf = ApplyMapping.apply(
 )
 
 #changeschema_weather_dyf.show()
-
+# Script generated to load the data in Redshift
 redshift_output = glueContext.write_dynamic_frame.from_options(
     frame=changeschema_weather_dyf,
     connection_type="redshift",
